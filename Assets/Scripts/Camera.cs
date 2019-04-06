@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Camera : MonoBehaviour {
 
+    public GameObject player;
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		if (MenuPause.estaPausado)
 			return;
-		
-		transform.position += new Vector3 (5f * Time.deltaTime, 0, 0);
+
+        transform.position = new Vector3(player.transform.position.x + 6, 0f, -10f);
 	}
 
 }
