@@ -20,4 +20,9 @@ public class MenuIniciar : MonoBehaviour {
 	public void CarregarJogo(){
 		SceneManager.LoadScene ("Jogo1");
 	}
+
+	public void SairJogo(){
+		Application.Quit ();
+	}
+
 }
