@@ -20,6 +20,9 @@ public class GerarMapa : MonoBehaviour {
 		
 	// Update is called once per frame
 	void Update () {
+		if (MenuPause.estaPausado)
+			return;
+		
 		if (player.transform.position.x > Chao.transform.position.x) {
 			var tempTeto = Teto2;
 			var tempChao = Chao2;

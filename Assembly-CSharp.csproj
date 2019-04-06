@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\Jogador1.cs" />
      <Compile Include="Assets\Scripts\MenuIniciar.cs" />
      <Compile Include="Assets\Scripts\MenuMensagens.cs" />
+     <Compile Include="Assets\Scripts\MenuPause.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
