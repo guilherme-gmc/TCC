@@ -60,7 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Camera.cs" />
+    <Compile Include="Assets\enemy1.cs" />
+    <Compile Include="Assets\Scripts\Camera1.cs" />
     <Compile Include="Assets\Scripts\GerarMapa.cs" />
     <Compile Include="Assets\Scripts\Jogador1.cs" />
     <Compile Include="Assets\Scripts\MenuIniciar.cs" />

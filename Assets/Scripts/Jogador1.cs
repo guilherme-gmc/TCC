@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Jogador1 : MonoBehaviour
@@ -8,12 +7,12 @@ public class Jogador1 : MonoBehaviour
     bool grounded;
     bool roofed;
     Vector2 grav;
-    Vector2 vSpd;
+    Vector2 vspd;
     Vector2 jmpSpd;
     Vector2 jmpAccel;
-    Vector2 hSpd;
+    Vector2 hspd;
     Vector2 spd;
-    bool mouseDown;
+    bool mousePressed;
 
     // Use this for initialization
     void Start()
@@ -22,31 +21,36 @@ public class Jogador1 : MonoBehaviour
         grav = new Vector2(0f, -12f);
         jmpAccel = new Vector2(0f, 22f);
         jmpSpd = new Vector2(0f, 220f);
-        vSpd = new Vector2(0f, 0f);
-        hSpd = new Vector2(180f, 0f);
+        vspd = new Vector2(0f, 0f);
+        hspd = new Vector2(180f, 0f);
         spd = new Vector2();
-        spd = hSpd + vSpd;
+        spd = hspd + vspd;
         grounded = false;
         roofed = false;
-        mouseDown = false;
+        mousePressed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        mouseDown = Input.GetMouseButton(0) ? true : false;
+        mousePressed = Input.GetMouseButton(0) ? true : false;
         //Apply gravity
         if (!grounded)
         {
-            vSpd += grav;
+            vspd += grav;
         }
 
-        if (!roofed && mouseDown)
+        if (!roofed && mousePressed)
         {
-            vSpd += jmpAccel;
+            vspd += jmpAccel;
         }
 
-        body.velocity = (hSpd + vSpd) * Time.deltaTime;
+        if(grounded && Input.GetMouseButtonDown(0))
+        {
+            vspd += jmpSpd;
+        }
+
+        body.velocity = (hspd + vspd) * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -54,12 +58,12 @@ public class Jogador1 : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             grounded = true;
-            vSpd.y = 0;
+            vspd.y = 0;
         }
         else if (collision.gameObject.tag == "Roof")
         {
             roofed = true;
-            vSpd.y = 0f;
+            vspd.y = 0f;
         }
 
     }
@@ -68,16 +72,16 @@ public class Jogador1 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            if(!mouseDown)
+            if(!mousePressed)
             {
                 grounded = true;
-                vSpd.y = 0;
+                vspd.y = 0;
             }
         } else if (collision.gameObject.tag == "Roof") {
-            if(mouseDown)
+            if(mousePressed)
             {
                 roofed = true;
-                vSpd.y = 0f;
+                vspd.y = 0f;
             }
         }
     }
@@ -87,12 +91,19 @@ public class Jogador1 : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             grounded = false;
-            vSpd += jmpSpd;
         }
 
         if (collision.gameObject.tag == "Roof")
         {
             roofed = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy1")
+        {
+            SceneManager.LoadScene("MenuInicial");
         }
     }
 

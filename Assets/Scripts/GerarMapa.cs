@@ -13,13 +13,26 @@ public class GerarMapa : MonoBehaviour
     public GameObject player;
 
     private float groundY;
+    private GameObject enemy1;
 
+    //Enemy1 values
+    private float enemy1_minY;
+    private float enemy1_maxY;
+    private float spawnPadding;
+    
     // Use this for initialization
     void Start()
     {
         groundY = Chao.transform.position.y;
         Chao.transform.position = new Vector3(Chao.transform.position.x, groundY, Chao.transform.position.z);
         Chao2.transform.position = new Vector3(Chao2.transform.position.x, groundY, Chao2.transform.position.z);
+
+        enemy1 = Resources.Load<GameObject>("Prefabs/enemy1");
+        spawnPadding = 0f;
+        enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + spawnPadding;
+        enemy1_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy1.transform.localScale.y / 2 - spawnPadding;
+
+        InvokeRepeating("SpawnEnemy1", 1.0f, 1.0f);
     }
 
     // Update is called once per frame
@@ -37,5 +50,9 @@ public class GerarMapa : MonoBehaviour
             Teto.transform.position += new Vector3(80f, 0f, 0f);
         }
 
+    }
+
+    void SpawnEnemy1() {
+        Instantiate(enemy1, new Vector3(Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * 2, Random.Range(enemy1_minY, enemy1_maxY), 0f), Quaternion.identity);
     }
 }
