@@ -18,7 +18,9 @@ public class GerarMapa : MonoBehaviour
     //Enemy1 values
     private float enemy1_minY;
     private float enemy1_maxY;
-    private float spawnPadding;
+    private float enemy1_spawnPadding;
+    private float enemy1_spawnDelay;
+    private float enemy1_spawnRepeat;
     
     // Use this for initialization
     void Start()
@@ -28,11 +30,13 @@ public class GerarMapa : MonoBehaviour
         Chao2.transform.position = new Vector3(Chao2.transform.position.x, groundY, Chao2.transform.position.z);
 
         enemy1 = Resources.Load<GameObject>("Prefabs/enemy1");
-        spawnPadding = 0f;
-        enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + spawnPadding;
-        enemy1_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy1.transform.localScale.y / 2 - spawnPadding;
+        enemy1_spawnPadding = 0f;
+        enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + enemy1_spawnPadding;
+        enemy1_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy1.transform.localScale.y / 2 - enemy1_spawnPadding;
+        enemy1_spawnDelay = 3f;
+        enemy1_spawnRepeat = 1.5f;
 
-        InvokeRepeating("SpawnEnemy1", 1.0f, 1.0f);
+        InvokeRepeating("SpawnEnemy1", enemy1_spawnDelay, enemy1_spawnRepeat);
     }
 
     // Update is called once per frame

@@ -18,7 +18,7 @@ public class MenuIniciar : MonoBehaviour {
 		SceneManager.LoadScene ("Mensagens");
 	}
 	public void CarregarJogo(){
-		SceneManager.LoadScene ("Jogo1");
+        StartCoroutine(GameObject.Find("Canvas").GetComponent<SceneTransitions>().ChangeScene("gameStart"));
 	}
 
 	public void SairJogo(){

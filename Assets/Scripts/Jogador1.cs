@@ -103,7 +103,7 @@ public class Jogador1 : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy1")
         {
-            SceneManager.LoadScene("MenuInicial");
+            StartCoroutine(GameObject.Find("Canvas").GetComponent<SceneTransitions>().ChangeScene("gameOver"));
         }
     }
 
