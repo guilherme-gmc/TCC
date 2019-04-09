@@ -37,6 +37,8 @@ public class Jogador1 : MonoBehaviour
         //Apply gravity
         if (!grounded)
         {
+			if (MenuPause.estaPausado)
+				return;
             vspd += grav;
         }
 
