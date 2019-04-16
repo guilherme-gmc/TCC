@@ -25,4 +25,12 @@ public class MenuIniciar : MonoBehaviour {
 		Application.Quit ();
 	}
 
+	public void CarregarMenuInicial(){
+		SceneManager.LoadScene ("MenuInicial");
+	}
+
+	public void CarregarConfiguracoes(){
+		SceneManager.LoadScene ("MenuConf");
+	}
+
 }

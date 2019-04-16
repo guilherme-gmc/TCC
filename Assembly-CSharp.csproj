@@ -58,9 +58,11 @@
      <Compile Include="Assets\Scripts\Camera1.cs" />
      <Compile Include="Assets\Scripts\GerarMapa.cs" />
      <Compile Include="Assets\Scripts\Jogador1.cs" />
+     <Compile Include="Assets\Scripts\MenuConfig.cs" />
      <Compile Include="Assets\Scripts\MenuIniciar.cs" />
      <Compile Include="Assets\Scripts\MenuMensagens.cs" />
      <Compile Include="Assets\Scripts\MenuPause.cs" />
+     <Compile Include="Assets\Scripts\SettingsMenu.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/gmed1/OneDrive/Documentos/TCC2/TCC/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
