@@ -25,6 +25,7 @@ public class GerarMapa : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		
         groundY = Chao.transform.position.y;
         Chao.transform.position = new Vector3(Chao.transform.position.x, groundY, Chao.transform.position.z);
         Chao2.transform.position = new Vector3(Chao2.transform.position.x, groundY, Chao2.transform.position.z);
