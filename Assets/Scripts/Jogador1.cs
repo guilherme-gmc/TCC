@@ -4,6 +4,7 @@ using UnityEngine;
 public class Jogador1 : MonoBehaviour
 {
     Rigidbody2D body;
+    Animator anim;
     bool grounded;
     bool roofed;
     Vector2 grav;
@@ -18,6 +19,7 @@ public class Jogador1 : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         grav = new Vector2(0f, -12f);
         jmpAccel = new Vector2(0f, 22f);
         jmpSpd = new Vector2(0f, 220f);
@@ -33,26 +35,34 @@ public class Jogador1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mousePressed = Input.GetMouseButton(0) ? true : false;
-        //Apply gravity
-        if (!grounded)
+        if (!SceneTransitions.transitioning && !PauseHandler.estaPausado)
         {
-			if (MenuPause.estaPausado)
-				return;
-            vspd += grav;
-        }
+            anim.speed = 1;
+            mousePressed = Input.GetMouseButton(0) ? true : false;
+            //Apply gravity
+            if (!grounded)
+            {
+                if (PauseHandler.estaPausado)
+                    return;
+                vspd += grav;
+            }
 
-        if (!roofed && mousePressed)
+            if (!roofed && mousePressed)
+            {
+                vspd += jmpAccel;
+            }
+
+            if (grounded && Input.GetMouseButtonDown(0))
+            {
+                vspd += jmpSpd;
+            }
+
+            body.velocity = (hspd + vspd) * Time.deltaTime;
+        } else
         {
-            vspd += jmpAccel;
+            anim.speed = 0;
+            body.velocity = Vector2.zero;
         }
-
-        if(grounded && Input.GetMouseButtonDown(0))
-        {
-            vspd += jmpSpd;
-        }
-
-        body.velocity = (hspd + vspd) * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -105,7 +115,7 @@ public class Jogador1 : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy1")
         {
-            StartCoroutine(GameObject.Find("Canvas").GetComponent<SceneTransitions>().ChangeScene("gameOver"));
+            GameObject.Find("Canvas").GetComponent<SceneTransitions>().ChangeScene("gameOver");
         }
     }
 
