@@ -13,7 +13,7 @@ public class Camera1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		if (MenuPause.estaPausado)
+		if (PauseHandler.estaPausado)
 			return;
 
         transform.position = new Vector3(player.transform.position.x + 6, 0f, -10f);

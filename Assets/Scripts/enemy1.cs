@@ -16,6 +16,12 @@ public class enemy1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!SceneTransitions.transitioning && !PauseHandler.estaPausado)
+        {
         body.velocity = hspd * Time.deltaTime;
+        } else
+        {
+            body.velocity = Vector2.zero;
+        }
     }
 }

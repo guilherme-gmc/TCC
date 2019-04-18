@@ -2,31 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuPause : MonoBehaviour {
+public class PauseHandler : MonoBehaviour {
 
-	public GameObject menu;
+    private GameObject pausePrefab;
+	private GameObject menu;
 	static public bool estaPausado;
 
 	// Use this for initialization
 	void Start () {
 
-		menu = Instantiate (menu, menu.transform.position, menu.transform.rotation) as GameObject;
+        pausePrefab = Resources.Load<GameObject>("Prefabs/MenuPausado");
+        menu = Instantiate (pausePrefab) as GameObject;
 		Pause (false);
 
 	}
 
-	void Pause(bool statusPause){
+	public void Pause(bool statusPause){
 		estaPausado = statusPause;
-		menu.SetActive (estaPausado);
-
-		if (estaPausado) {
-
-			Time.timeScale = 0;
-
-		} else {
-			Time.timeScale = 1;
-		}
-
+		menu.SetActive(estaPausado);
 	}
 	
 	// Update is called once per frame
@@ -35,10 +28,6 @@ public class MenuPause : MonoBehaviour {
 			Pause (!estaPausado);
 		}
 
-	}
-
-	public void despausar(){
-		Pause (!estaPausado);
 	}
 
 }
