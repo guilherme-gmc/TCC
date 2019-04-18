@@ -1,14 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MudVolume.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuPause.cs">
     <Files>
-      <File FileName="Assets\Scripts\MenuPause.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuPause.cs" Line="41" Column="24" />
       <File FileName="Assets\Scripts\Jogador1.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GerarMapa.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MenuIniciar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuIniciar.cs" Line="6" Column="25" />
       <File FileName="Assets\Scripts\Camera1.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MenuMensagens.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MudVolume.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Music.cs" Line="24" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
