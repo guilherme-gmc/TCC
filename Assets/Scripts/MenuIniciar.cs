@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuIniciar : MonoBehaviour {
 
-    private SceneTransitions sceneTransitions;
+
 	// Use this for initialization
 	void Start () {
-        sceneTransitions = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
-    }
+		
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,11 +19,15 @@ public class MenuIniciar : MonoBehaviour {
 		SceneManager.LoadScene ("Mensagens");
 	}
 	public void CarregarJogo(){
-        sceneTransitions.ChangeScene("gameStart");
+        StartCoroutine(GameObject.Find("Canvas").GetComponent<SceneTransitions>().ChangeScene("gameStart"));
 	}
 
 	public void SairJogo(){
 		Application.Quit ();
+	}
+
+	public void CarregarMenuInicial(){
+		SceneManager.LoadScene ("MenuInicial");
 	}
 
 	public void CarregarConfiguracoes(){
