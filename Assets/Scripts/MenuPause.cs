@@ -34,5 +34,11 @@ public class MenuPause : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			Pause (!estaPausado);
 		}
+
 	}
+
+	public void despausar(){
+		Pause (!estaPausado);
+	}
+
 }

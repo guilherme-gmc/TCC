@@ -62,7 +62,7 @@
      <Compile Include="Assets\Scripts\MenuIniciar.cs" />
      <Compile Include="Assets\Scripts\MenuMensagens.cs" />
      <Compile Include="Assets\Scripts\MenuPause.cs" />
-     <Compile Include="Assets\Scripts\MudVolume.cs" />
+     <Compile Include="Assets\Scripts\Music.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/gmed1/OneDrive/Documentos/TCC2/TCC/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
