@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Camera1.cs" />
      <Compile Include="Assets\Scripts\GerarMapa.cs" />
      <Compile Include="Assets\Scripts\Jogador1.cs" />
+     <Compile Include="Assets\Scripts\Jogador2.cs" />
      <Compile Include="Assets\Scripts\MenuConfig.cs" />
      <Compile Include="Assets\Scripts\MenuIniciar.cs" />
      <Compile Include="Assets\Scripts\MenuMensagens.cs" />
