@@ -3,23 +3,26 @@ using UnityEngine;
 
 public class Jogador1 : MonoBehaviour
 {
-    Rigidbody2D body;
-    Animator anim;
-    bool grounded;
-    bool roofed;
-    Vector2 grav;
-    Vector2 vspd;
-    Vector2 jmpSpd;
-    Vector2 jmpAccel;
-    Vector2 hspd;
-    Vector2 spd;
-    bool mousePressed;
+    private Rigidbody2D body;
+    private Animator anim;
+    private bool grounded;
+    private bool roofed;
+    private Vector2 grav;
+    private Vector2 vspd;
+    private Vector2 jmpSpd;
+    private Vector2 jmpAccel;
+    private Vector2 hspd;
+    private Vector2 spd;
+    private bool mousePressed;
+
+    private SceneTransitions sceneTrans;
 
     // Use this for initialization
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
         grav = new Vector2(0f, -12f);
         jmpAccel = new Vector2(0f, 22f);
         jmpSpd = new Vector2(0f, 220f);
@@ -115,7 +118,11 @@ public class Jogador1 : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy1")
         {
-            GameObject.Find("Canvas").GetComponent<SceneTransitions>().ChangeScene("gameOver");
+            sceneTrans.ChangeScene("gameOver");
+        } else if(collision.gameObject.tag == "Consumable")
+        {
+            g.ScoreInc();
+            Destroy(collision.gameObject);
         }
     }
 

@@ -36,7 +36,7 @@ public class SceneTransitions : MonoBehaviour
         StartCoroutine(ChangeSceneCoroutine(context));
     }
 
-    public IEnumerator ChangeSceneCoroutine(string context)
+    private IEnumerator ChangeSceneCoroutine(string context)
     {
         _context = context;
         gameEyes.SetActive(true);
@@ -56,13 +56,15 @@ public class SceneTransitions : MonoBehaviour
             yield return new WaitForSeconds(tranDuration);
             SceneManager.LoadScene("Jogo1");
 
-        } else
-        {
-            print("Please input a valid context for the ChangeScene Coroutine");
+        } else if(context == "gameNext") {
+            bdAnim.SetTrigger("gameStart");
+            transitioning = true;
+            yield return new WaitForSeconds(fadeDuration);
+            SceneManager.LoadScene("Jogo2");
         }
     }
 
-    public IEnumerator TransitionFade()
+    private IEnumerator TransitionFade()
     {
         gameEyes.SetActive(true);
         gameBd.SetActive(true);
@@ -78,6 +80,12 @@ public class SceneTransitions : MonoBehaviour
             bdAnim.SetTrigger("gameOverOut");
             yield return new WaitForSeconds(fadeDuration);
             gameEyes.SetActive(false);
+            gameBd.SetActive(false);
+            transitioning = false;
+        } else if (_context == "gameNext")
+        {
+            bdAnim.SetTrigger("gameStartOut");
+            yield return new WaitForSeconds(fadeDuration);
             gameBd.SetActive(false);
             transitioning = false;
         }

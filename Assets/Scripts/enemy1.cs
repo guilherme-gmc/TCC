@@ -24,4 +24,11 @@ public class enemy1 : MonoBehaviour
             body.velocity = Vector2.zero;
         }
     }
+
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    
 }
