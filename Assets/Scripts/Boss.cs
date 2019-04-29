@@ -41,7 +41,6 @@ public class Boss : MonoBehaviour
         startingCooldown = 4f;
         endingCooldown = 2f;
         scaleDec = new Vector3((transform.localScale.x - 1.45f)/3f, (transform.localScale.y - 1.55f)/3f, 0f);
-        print(scaleDec);
         phase2WlkSpd = 140f;
         vspd = Vector2.zero;
         doneAttacking2 = true;

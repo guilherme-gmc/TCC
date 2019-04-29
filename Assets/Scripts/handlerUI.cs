@@ -12,6 +12,6 @@ public class handlerUI : MonoBehaviour
     }
 
     public void UpdateScore() {
-		scoreText.text = "Chocolates: " + g.score + "/" + g.maxScore;
+		scoreText.text = "Chocolates: " + g.GetScore() + "/" + g.maxScore;
 	}
 }

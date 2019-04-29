@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
 
 public class SceneTransitions : MonoBehaviour
 {
@@ -33,6 +32,7 @@ public class SceneTransitions : MonoBehaviour
 
     public void ChangeScene(string context)
     {
+        g.ResetScore();
         StartCoroutine(ChangeSceneCoroutine(context));
     }
 
