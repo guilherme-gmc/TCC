@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class g : MonoBehaviour
 {
-    public static int score = 0;
+    private static int score = 0;
     public static int maxScore = 1;
     public static Vector2 hspd = new Vector2(-300f, 0f);
 
@@ -17,5 +17,13 @@ public class g : MonoBehaviour
         if(score == maxScore) {
             GameObject.Find("Canvas").GetComponent<SceneTransitions>().ChangeScene("gameNext");
         }
+    }
+
+    public static int GetScore() {
+        return score;
+    }
+
+    public static void ResetScore() {
+        score = 0;
     }
 }

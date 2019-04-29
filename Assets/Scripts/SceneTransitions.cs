@@ -32,6 +32,7 @@ public class SceneTransitions : MonoBehaviour
 
     public void ChangeScene(string context)
     {
+        g.ResetScore();
         StartCoroutine(ChangeSceneCoroutine(context));
     }
 
