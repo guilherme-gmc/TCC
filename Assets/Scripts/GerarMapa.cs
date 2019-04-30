@@ -40,12 +40,12 @@ public class GerarMapa : MonoBehaviour
         
 
         //Enemy1
-        enemy1 = Resources.Load<GameObject>("Prefabs/enemy1");
+		enemy1 = Resources.Load<GameObject>("Prefabs/Enemy1");
         enemy1_spawnPadding = 0f;
-        enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + enemy1_spawnPadding;
+		enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + enemy1_spawnPadding;
         enemy1_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy1.transform.localScale.y / 2 - enemy1_spawnPadding;
         enemy1_spawnDelay = 3f;
-        enemy1_spawnRepeat = 1.5f;
+        enemy1_spawnRepeat = 2f;
         InvokeRepeating("SpawnEnemy1", enemy1_spawnDelay, enemy1_spawnRepeat);
 
         //Choco
@@ -53,8 +53,8 @@ public class GerarMapa : MonoBehaviour
         choco_spawnPadding = 0f;
         choco_minY = groundY + Chao.transform.localScale.y / 2 + choco.transform.localScale.y / 2 + choco_spawnPadding;
         choco_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - choco.transform.localScale.y / 2 - choco_spawnPadding;
-        choco_spawnDelay = 1.5f;
-        choco_spawnRepeat = 2f;
+        choco_spawnDelay = 3f;
+        choco_spawnRepeat = 5f;
         InvokeRepeating("SpawnChoco", choco_spawnDelay, choco_spawnRepeat);
     }
 

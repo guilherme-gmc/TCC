@@ -116,7 +116,7 @@ public class Jogador1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy1")
+		if(collision.gameObject.tag == "Enemy1")
         {
             sceneTrans.ChangeScene("gameOver");
         } else if(collision.gameObject.tag == "Consumable")
