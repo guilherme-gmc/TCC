@@ -53,7 +53,7 @@ public class GerarMapa : MonoBehaviour
         choco_spawnPadding = 0f;
         choco_minY = groundY + Chao.transform.localScale.y / 2 + choco.transform.localScale.y / 2 + choco_spawnPadding;
         choco_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - choco.transform.localScale.y / 2 - choco_spawnPadding;
-        choco_spawnDelay = 3f;
+        choco_spawnDelay = 10f;
         choco_spawnRepeat = 5f;
         InvokeRepeating("SpawnChoco", choco_spawnDelay, choco_spawnRepeat);
     }

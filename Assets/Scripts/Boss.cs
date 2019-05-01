@@ -38,7 +38,7 @@ public class Boss : MonoBehaviour
         hp2 = 200f;
         currentHp = hp1;
         phase = 1;
-        startingCooldown = 4f;
+        startingCooldown = 3f;
         endingCooldown = 2f;
         scaleDec = new Vector3((transform.localScale.x - 1.45f)/3f, (transform.localScale.y - 1.55f)/3f, 0f);
         phase2WlkSpd = 140f;
