@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: baef4fca66b444e46b14341e197d03fc
+guid: 44f5d0e23cfd29a4f822dbbe6377e7a6
 TextureImporter:
   fileIDToRecycleName:
-    21300000: player_attack_0
-    21300002: player_attack_1
-    21300004: player_attack_2
-    21300006: player_attack_4
-    21300008: player_attack_5
+    21300000: idle_menu_0
+    21300002: idle_menu_1
+    21300004: idle_menu_2
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -36,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -89,101 +87,61 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_attack_0
+      name: idle_menu_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 95
-        width: 7
-        height: 7
+        x: 8
+        y: 14
+        width: 113
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b6d41a486db2f14381bc9b4d0aa0b54
+      spriteID: b69c5da84357ad646875eb93ee0e1472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_attack_1
+      name: idle_menu_1
       rect:
         serializedVersion: 2
-        x: 10
-        y: 72
-        width: 16
-        height: 17
+        x: 179
+        y: 14
+        width: 113
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c1327d430f7de34ea0a776511ea5e9d
+      spriteID: 2bfc0c49365f61c4d8a993202cf9b25b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_attack_2
+      name: idle_menu_2
       rect:
         serializedVersion: 2
-        x: 19
-        y: 49
-        width: 21
-        height: 18
+        x: 354
+        y: 14
+        width: 113
+        height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c59a004812d313f40bea432a033503ad
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player_attack_4
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 26
-        width: 33
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a3e0d1143ab24e4c84de6d5f96c9181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player_attack_5
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 9
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7fc9e7395eacb949894710105412521
+      spriteID: 4f08085a85401324596880cadea0e12d
       vertices: []
       indices: 
       edges: []
@@ -191,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8ab3d43b0a2acce4ba6c53fb767fe531
+    spriteID: 925c126b74b60c94ab97244bdac1b2a6
     vertices: []
     indices: 
     edges: []

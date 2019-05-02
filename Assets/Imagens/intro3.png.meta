@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 44f5d0e23cfd29a4f822dbbe6377e7a6
+guid: 5beeaab52de0bd94fb453621e08d636a
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: idle_menu_0
-    21300002: idle_menu_1
-    21300004: idle_menu_2
+  fileIDToRecycleName: {}
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -34,7 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -43,7 +40,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -85,71 +82,11 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: idle_menu_0
-      rect:
-        serializedVersion: 2
-        x: 7
-        y: 13
-        width: 114
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b69c5da84357ad646875eb93ee0e1472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_menu_1
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 14
-        width: 114
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2bfc0c49365f61c4d8a993202cf9b25b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: idle_menu_2
-      rect:
-        serializedVersion: 2
-        x: 353
-        y: 14
-        width: 115
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f08085a85401324596880cadea0e12d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 925c126b74b60c94ab97244bdac1b2a6
+    spriteID: 97ec12cd7680d1d4ab3057d5abb4a1cb
     vertices: []
     indices: 
     edges: []

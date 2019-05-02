@@ -39,7 +39,7 @@ public class Boss : MonoBehaviour
         currentHp = hp1;
         phase = 1;
         startingCooldown = 3f;
-        endingCooldown = 2f;
+        endingCooldown = 1.8f;
         scaleDec = new Vector3((transform.localScale.x - 1.45f)/3f, (transform.localScale.y - 1.55f)/3f, 0f);
         phase2WlkSpd = 140f;
         vspd = Vector2.zero;
@@ -52,56 +52,58 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(switching) {
-            if(transform.localScale.x > 1.45f) {
-                transform.localScale -= scaleDec * Time.deltaTime;
-                //transform.position += new Vector3(scaleDec.x/2, 0f, 0f) * Time.deltaTime;
+        if (!SceneTransitions.transitioning && !PauseHandler.estaPausado) {
+            if(switching) {
+                if(transform.localScale.x > 1.45f) {
+                    transform.localScale -= scaleDec * Time.deltaTime;
+                    //transform.position += new Vector3(scaleDec.x/2, 0f, 0f) * Time.deltaTime;
+                }
+
+                if(!shake.shaking) {
+                    switching = false;
+                }
             }
 
-            if(!shake.shaking) {
-                switching = false;
-            }
-        }
-
-        if(attacking2) {
-            if(doneAttacking2) {
-                doneAttacking2 = false;
-                standing = false;
-                attackY = GenerateAttackPos();
-                arrived = false;
-            }
-            
-            if(!arrived) {
-                if(attackY > transform.position.y) {
-                    vspd = new Vector2(0f, phase2WlkSpd);
-                    if(transform.position.y + vspd.y * Mathf.Pow(Time.deltaTime, 2) > attackY) {
-                        transform.position = new Vector3(transform.position.x, attackY, transform.position.z);
-                        body.velocity = Vector2.zero;
-                        arrived = true;
+            if(attacking2) {
+                if(doneAttacking2) {
+                    doneAttacking2 = false;
+                    standing = false;
+                    attackY = GenerateAttackPos();
+                    arrived = false;
+                }
+                
+                if(!arrived) {
+                    if(attackY > transform.position.y) {
+                        vspd = new Vector2(0f, phase2WlkSpd);
+                        if(transform.position.y + vspd.y * Mathf.Pow(Time.deltaTime, 2) > attackY) {
+                            transform.position = new Vector3(transform.position.x, attackY, transform.position.z);
+                            body.velocity = Vector2.zero;
+                            arrived = true;
+                        } else {
+                            body.velocity = vspd * Time.deltaTime;
+                            
+                        }
+                    } else if(attackY < transform.position.y) {
+                        vspd = new Vector2(0f, -phase2WlkSpd);
+                        if(transform.position.y + vspd.y * Mathf.Pow(Time.deltaTime, 2) < attackY) {
+                            transform.position = new Vector3(transform.position.x, attackY, transform.position.z);
+                            body.velocity = Vector2.zero;
+                            arrived = true;
+                        } else {
+                            body.velocity = vspd * Time.deltaTime;
+                        }
                     } else {
-                        body.velocity = vspd * Time.deltaTime;
-                        
-                    }
-                } else if(attackY < transform.position.y) {
-                    vspd = new Vector2(0f, -phase2WlkSpd);
-                    if(transform.position.y + vspd.y * Mathf.Pow(Time.deltaTime, 2) < attackY) {
-                        transform.position = new Vector3(transform.position.x, attackY, transform.position.z);
-                        body.velocity = Vector2.zero;
+                        vspd = Vector2.zero;
                         arrived = true;
-                    } else {
-                        body.velocity = vspd * Time.deltaTime;
                     }
                 } else {
-                    vspd = Vector2.zero;
-                    arrived = true;
+                    if(!standing) {
+                        StartCoroutine(Wait());
+                        standing = true;
+                    } 
                 }
-            } else {
-                if(!standing) {
-                    StartCoroutine(Wait());
-                    standing = true;
-                } 
+                
             }
-            
         }
 
     }
@@ -151,16 +153,16 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Attack1() {
         yield return new WaitForSeconds((currentHp / 100) * (startingCooldown - endingCooldown) + endingCooldown);
-        if(!switching) {
-            lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - laser.transform.localScale.x / 2, GenerateAttackPos(), 0f), Quaternion.identity);
-            lastLaser.transform.parent = this.gameObject.transform;
+        if(!switching && !PauseHandler.estaPausado && !SceneTransitions.transitioning) {
+            lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - 0.3f, GenerateAttackPos(), 0f), Quaternion.identity);
+            lastLaser.transform.SetParent(this.transform, true);
             StartAttack1();
         }
     }
 
     private IEnumerator Wait() {
         yield return StartCoroutine(WaitCoroutine(true));
-        lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - laser.transform.localScale.x / 2, transform.position.y, 0f), Quaternion.identity);
+        lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - 0.3f, transform.position.y, 0f), Quaternion.identity);
         lastLaser.transform.parent = this.gameObject.transform;
         yield return StartCoroutine(WaitCoroutine(false));
     }

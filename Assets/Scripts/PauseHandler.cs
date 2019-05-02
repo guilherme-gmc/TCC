@@ -14,17 +14,25 @@ public class PauseHandler : MonoBehaviour {
         menu = Instantiate (pausePrefab) as GameObject;
 		Pause (false);
 
+
 	}
 
 	public void Pause(bool statusPause){
 		estaPausado = statusPause;
 		menu.SetActive(estaPausado);
+		if(estaPausado) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
 	}
 	
 	// Update is called once per frame
 	public void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
-			Pause (!estaPausado);
+			if(!SceneTransitions.transitioning) {
+				Pause (!estaPausado);
+			}
 		}
 
 	}
