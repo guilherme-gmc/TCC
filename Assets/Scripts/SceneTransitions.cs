@@ -61,6 +61,11 @@ public class SceneTransitions : MonoBehaviour
             transitioning = true;
             yield return new WaitForSeconds(fadeDuration);
             SceneManager.LoadScene("Jogo2");
+        } else if(context == "gameCont") {
+            bdAnim.SetTrigger("gameStart");
+            transitioning = true;
+            yield return new WaitForSeconds(fadeDuration);
+            SceneManager.LoadScene("Jogo1");
         }
     }
 
@@ -83,6 +88,12 @@ public class SceneTransitions : MonoBehaviour
             gameBd.SetActive(false);
             transitioning = false;
         } else if (_context == "gameNext")
+        {
+            bdAnim.SetTrigger("gameStartOut");
+            yield return new WaitForSeconds(fadeDuration);
+            gameBd.SetActive(false);
+            transitioning = false;
+        } else if (_context == "gameCont")
         {
             bdAnim.SetTrigger("gameStartOut");
             yield return new WaitForSeconds(fadeDuration);

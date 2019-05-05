@@ -6,7 +6,7 @@ public class Jogador2 : MonoBehaviour
 {
     private Rigidbody2D body;
     private Animator anim;
-    private float spd = 140f;
+    private float spd = 140f * g.spdMult;
     private Vector2 dir = Vector2.zero;
     private bool attacking;
     private GameObject bullet;
@@ -20,6 +20,19 @@ public class Jogador2 : MonoBehaviour
         anim = GetComponent<Animator>();
         sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
         bullet = Resources.Load<GameObject>("Prefabs/bullet");
+
+        if(Input.GetButton("Right")) {
+                dir.x += 1;
+            }
+            if(Input.GetButton("Up")) {
+                dir.y += 1;
+            }
+            if(Input.GetButton("Left")) {
+                dir.x -= 1;
+            }
+            if(Input.GetButton("Down")) {
+                dir.y -= 1;
+            }
     }
 
     // Update is called once per frame

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GerarMapa : MonoBehaviour
 {
-
-    public GameObject Teto2;
-    public GameObject Chao2;
     public GameObject Teto;
     public GameObject Chao;
 
@@ -34,45 +31,27 @@ public class GerarMapa : MonoBehaviour
     void Start()
     {
 		//Ambient
-        groundY = Chao.transform.position.y;
-        Chao.transform.position = new Vector3(Chao.transform.position.x, groundY, Chao.transform.position.z);
-        Chao2.transform.position = new Vector3(Chao2.transform.position.x, groundY, Chao2.transform.position.z);
-        
+        groundY = Chao.transform.position.y;      
 
         //Enemy1
 		enemy1 = Resources.Load<GameObject>("Prefabs/Enemy1");
         enemy1_spawnPadding = 0f;
 		enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + enemy1_spawnPadding;
         enemy1_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy1.transform.localScale.y / 2 - enemy1_spawnPadding;
-        enemy1_spawnDelay = 3f;
-        enemy1_spawnRepeat = 2f;
-        InvokeRepeating("SpawnEnemy1", enemy1_spawnDelay, enemy1_spawnRepeat);
+        enemy1_spawnDelay = 0.5f;
+        enemy1_spawnRepeat = 1f;
 
         //Choco
         choco = Resources.Load<GameObject>("Prefabs/choco");
         choco_spawnPadding = 0f;
         choco_minY = groundY + Chao.transform.localScale.y / 2 + choco.transform.localScale.y / 2 + choco_spawnPadding;
         choco_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - choco.transform.localScale.y / 2 - choco_spawnPadding;
-        choco_spawnDelay = 10f;
-        choco_spawnRepeat = 5f;
+        choco_spawnDelay = 2f;
+        choco_spawnRepeat = enemy1_spawnRepeat*3;
+
+
+        InvokeRepeating("SpawnEnemy1", enemy1_spawnDelay, enemy1_spawnRepeat);
         InvokeRepeating("SpawnChoco", choco_spawnDelay, choco_spawnRepeat);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Chao2.transform.position.x + 20 < player.transform.position.x - 6)
-        {
-            Chao2.transform.position += new Vector3(80f, 0f, 0f);
-            Teto2.transform.position += new Vector3(80f, 0f, 0f);
-        }
-
-        if (Chao.transform.position.x + 20 < player.transform.position.x - 6)
-        {
-            Chao.transform.position += new Vector3(80f, 0f, 0f);
-            Teto.transform.position += new Vector3(80f, 0f, 0f);
-        }
-
     }
 
     void SpawnEnemy1() {

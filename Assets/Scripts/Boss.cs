@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     protected float currentHp;
     protected float hp1;
     protected float hp2;
-    private int phase;
+    private static int phase = 1;
     private Coroutine attack1;
     protected float startingCooldown;
     protected float endingCooldown;
@@ -27,17 +27,20 @@ public class Boss : MonoBehaviour
     bool arrived;
     bool standing;
     private SceneTransitions sceneTrans;
+    private Animator anim;
+    private CapsuleCollider2D collider;
 
     void Start()
     {
         laser = Resources.Load<GameObject>("Prefabs/laser");
         sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
+        anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
+        collider = GetComponent<CapsuleCollider2D>();
         shake = GetComponent<Shake>();
         hp1 = 100f;
         hp2 = 200f;
         currentHp = hp1;
-        phase = 1;
         startingCooldown = 3f;
         endingCooldown = 1.8f;
         scaleDec = new Vector3((transform.localScale.x - 1.45f)/3f, (transform.localScale.y - 1.55f)/3f, 0f);
@@ -46,7 +49,19 @@ public class Boss : MonoBehaviour
         doneAttacking2 = true;
         arrived = false;
         standing = false;
-        StartAttack1();
+
+        if(phase == 1) {
+            StartAttack1();
+            anim.SetTrigger("phaseOne");
+        } else {
+            transform.localScale = new Vector3(1.45f, 1.55f, transform.localScale.z);
+            transform.position = new Vector3(7.1f, transform.position.y, transform.position.y);
+            collider.offset = new Vector2(-0.05f, 0f);
+            collider.size = new Vector2(1.1f, 1.55f);
+            anim.SetTrigger("phaseTwo");
+            currentHp = hp2;
+            attacking2 = true;
+        }
     }
 
     // Update is called once per frame
@@ -54,10 +69,10 @@ public class Boss : MonoBehaviour
     {
         if (!SceneTransitions.transitioning && !PauseHandler.estaPausado) {
             if(switching) {
-                if(transform.localScale.x > 1.45f) {
+                /*if(transform.localScale.x > 1.45f) {
                     transform.localScale -= scaleDec * Time.deltaTime;
                     //transform.position += new Vector3(scaleDec.x/2, 0f, 0f) * Time.deltaTime;
-                }
+                }*/
 
                 if(!shake.shaking) {
                     switching = false;
@@ -102,10 +117,8 @@ public class Boss : MonoBehaviour
                         standing = true;
                     } 
                 }
-                
             }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -154,7 +167,7 @@ public class Boss : MonoBehaviour
     private IEnumerator Attack1() {
         yield return new WaitForSeconds((currentHp / 100) * (startingCooldown - endingCooldown) + endingCooldown);
         if(!switching && !PauseHandler.estaPausado && !SceneTransitions.transitioning) {
-            lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - 0.3f, GenerateAttackPos(), 0f), Quaternion.identity);
+            lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x - 2f, GenerateAttackPos(), 0f), Quaternion.identity);
             lastLaser.transform.SetParent(this.transform, true);
             StartAttack1();
         }
@@ -196,10 +209,9 @@ public class Boss : MonoBehaviour
         if(lastLaser != null) {
             Destroy(lastLaser);
         }
-        currentHp = hp2;
         phase = 2;
         yield return shake.ShakeMe(2f, 3f);
-        attacking2 = true;
+        sceneTrans.ChangeScene("gameCont");
     }
 
 

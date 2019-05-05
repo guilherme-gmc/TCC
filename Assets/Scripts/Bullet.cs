@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Vector2 spd = new Vector2(300f, 0f);
     private Rigidbody2D body;
     void Start()
     {
@@ -12,7 +11,7 @@ public class Bullet : MonoBehaviour
     }
 
     void Update() {
-        body.velocity = spd * Time.deltaTime;
+        body.velocity = g.hspd * Time.deltaTime;
     }
 
     void OnBecameInvisible()

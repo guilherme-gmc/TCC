@@ -1,17 +1,31 @@
 ﻿using System.Collections;
-using UnityEngine.UI;
+using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class handlerUI : MonoBehaviour
 {
-    private Text scoreText;
-    void Start()
-    {
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+    DirectoryInfo hudFolder;
+    private int i;
+    private GameObject Score;
+    private Image hudImg;
+    private string hudsPath;
+    private Sprite[] hudSprites;
+
+    // Use this for initialization
+    void Start () {
+        hudsPath = "UI/";
+        Score = transform.Find("Score").gameObject;
+        hudImg = Score.GetComponent<Image>();
+        i = 0;
+
+        hudSprites = Resources.LoadAll<Sprite>(hudsPath);
+
         UpdateScore();
     }
-
     public void UpdateScore() {
-		scoreText.text = "Chocolates: " + g.GetScore() + "/" + g.maxScore;
+		hudImg.sprite = hudSprites[g.GetScore()];
 	}
+
+
 }
