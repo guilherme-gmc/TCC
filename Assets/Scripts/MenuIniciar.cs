@@ -6,28 +6,29 @@ using UnityEngine.SceneManagement;
 public class MenuIniciar : MonoBehaviour {
 
     private SceneTransitions sceneTransitions;
-	// Use this for initialization
+	private GameObject credits;
+	private Animator anim;
+
 	void Start () {
         sceneTransitions = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
+		anim = transform.Find("IntroAnim").GetComponent<Animator>();
+		credits = transform.Find("IntroAnim").Find("CreditosText").gameObject;
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	public void CarregarMsg(){
-		SceneManager.LoadScene ("Mensagens");
-	}
 	public void CarregarJogo(){
         sceneTransitions.ChangeScene("gameStart");
 	}
 
 	public void SairJogo(){
-		Application.Quit ();
+		if(credits.activeSelf) {
+			anim.SetTrigger("creditsEnd");
+		} else {
+			Application.Quit ();
+		}
 	}
 
-	public void CarregarConfiguracoes(){
-		SceneManager.LoadScene ("MenuConf");
+	public void CarregarCreditos() {
+		anim.SetTrigger("creditsStart");
 	}
 
 }

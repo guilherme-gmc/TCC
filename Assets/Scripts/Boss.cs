@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour
     bool standing;
     private SceneTransitions sceneTrans;
     private Animator anim;
-    private CapsuleCollider2D collider;
+    private CapsuleCollider2D coll;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class Boss : MonoBehaviour
         sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
-        collider = GetComponent<CapsuleCollider2D>();
+        coll = GetComponent<CapsuleCollider2D>();
         shake = GetComponent<Shake>();
         hp1 = 100f;
         hp2 = 200f;
@@ -56,8 +56,8 @@ public class Boss : MonoBehaviour
         } else {
             transform.localScale = new Vector3(1.45f, 1.55f, transform.localScale.z);
             transform.position = new Vector3(7.1f, transform.position.y, transform.position.y);
-            collider.offset = new Vector2(-0.05f, 0f);
-            collider.size = new Vector2(1.1f, 1.55f);
+            coll.offset = new Vector2(-0.05f, 0f);
+            coll.size = new Vector2(1.1f, 1.55f);
             anim.SetTrigger("phaseTwo");
             currentHp = hp2;
             attacking2 = true;

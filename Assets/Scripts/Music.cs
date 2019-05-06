@@ -6,7 +6,13 @@ using UnityEngine.UI;
 public class Music : MonoBehaviour
 {
 	
-	static Music instance = null;
+	private static Music instance = null;
+	private AudioSource musicSource;
+	private static bool muted = false;
+
+	void Start() {
+		musicSource = GetComponent<AudioSource>();
+	}
 
 	private void Awake(){
 		if (instance != null){
@@ -17,12 +23,20 @@ public class Music : MonoBehaviour
 		}
 	}
 
-	public void ToggleSoung(){
-		if(PlayerPrefs.GetInt("Muted", 0) == 0){
-			PlayerPrefs.SetInt("Muted", 1);
-		}else{
-			PlayerPrefs.SetInt("Muted", 0);
+	public void ToggleSound(){
+		musicSource = GetComponent<AudioSource>();
+		if(!IsMuted) {
+			musicSource.mute = true;
+			IsMuted = true;
+		} else {
+			musicSource.mute = false;
+			IsMuted = false;
 		}
+	}
+
+	public static bool IsMuted {
+		get {return muted;}
+		set {muted = value;}
 	}
 
 

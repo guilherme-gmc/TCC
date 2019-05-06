@@ -12,8 +12,9 @@ public class Bg : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        render.material.mainTextureOffset += g.bgSpd * Time.deltaTime * Time.deltaTime / transform.localScale.x;
+    void Update() {
+        if(!PauseHandler.estaPausado) {
+            render.material.mainTextureOffset += g.bgSpd * Time.deltaTime * Time.deltaTime / transform.localScale.x;
+        }
     }
 }
