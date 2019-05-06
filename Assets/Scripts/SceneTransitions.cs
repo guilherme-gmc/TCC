@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransitions : MonoBehaviour
+public class SceneTransition : MonoBehaviour
 {
     private GameObject gameEyes;
     private GameObject gameBd;

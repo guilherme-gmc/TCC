@@ -34,7 +34,7 @@ public class MenuMensagens : MonoBehaviour {
         
         
         
-        if(IntroAnim.IsAppOpening()) {
+        if(IntroAnima.IsAppOpening()) {
             StartCoroutine(StartMessages());
         } else {
             SwitchMessage();

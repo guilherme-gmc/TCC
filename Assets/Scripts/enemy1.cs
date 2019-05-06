@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy1 : MonoBehaviour
+public class inimigo1 : MonoBehaviour
 {
     private Rigidbody2D body;
     // Start is called before the first frame update

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntroAnim : MonoBehaviour
+public class IntroAnima : MonoBehaviour
 {
     private static bool openingApp = true;
     private GameObject introAnim;

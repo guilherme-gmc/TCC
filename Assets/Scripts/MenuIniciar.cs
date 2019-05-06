@@ -19,7 +19,7 @@ public class MenuIniciar : MonoBehaviour {
 		SceneManager.LoadScene ("Mensagens");
 	}
 	public void CarregarJogo(){
-        sceneTransitions.ChangeScene("gameStart");
+        sceneTransitions.ChangeScene("Jogo1");
 	}
 
 	public void SairJogo(){
