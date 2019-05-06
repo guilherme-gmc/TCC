@@ -7,12 +7,7 @@ public class Music : MonoBehaviour
 {
 	
 	private static Music instance = null;
-	private AudioSource musicSource;
 	private static bool muted = false;
-
-	void Start() {
-		musicSource = GetComponent<AudioSource>();
-	}
 
 	private void Awake(){
 		if (instance != null){
@@ -20,17 +15,6 @@ public class Music : MonoBehaviour
 		}else{
 			instance = this;
 			GameObject.DontDestroyOnLoad(gameObject);
-		}
-	}
-
-	public void ToggleSound(){
-		musicSource = GetComponent<AudioSource>();
-		if(!IsMuted) {
-			musicSource.mute = true;
-			IsMuted = true;
-		} else {
-			musicSource.mute = false;
-			IsMuted = false;
 		}
 	}
 

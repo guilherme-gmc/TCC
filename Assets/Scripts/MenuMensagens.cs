@@ -149,17 +149,12 @@ public class MenuMensagens : MonoBehaviour {
             }
         } else if(button == "next") {
             i = (i+1)%len;
-            print(i);
         }
         _i = i;
         msgText.text = msgs[i];
         msgText.CrossFadeAlpha(1f, transDuration/2f, false);
         yield return new WaitForSeconds(transDuration/2f);
         SwitchMessage();
-    }
-
-    public void MuteAudioToggle() {
-        print("toggled");
     }
 
 
