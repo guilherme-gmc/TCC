@@ -14,8 +14,8 @@ public class IntroAnim : MonoBehaviour
         introAnim = transform.Find("IntroAnim").gameObject;
         eventSystem = GameObject.Find("EventSystem").gameObject;
         anim = introAnim.GetComponent<Animator>();
+
         if(openingApp) {
-            StartCoroutine(EventSystemCoroutine());
             anim.SetTrigger("introAnim");
             openingApp = false;
         } else {
@@ -25,11 +25,5 @@ public class IntroAnim : MonoBehaviour
 
     public static bool IsAppOpening() {
         return openingApp;
-    }
-
-    private IEnumerator EventSystemCoroutine() {
-        eventSystem.SetActive(false);
-        yield return new WaitForSeconds(6.0f);
-        eventSystem.SetActive(true);
     }
 }

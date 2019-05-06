@@ -175,9 +175,11 @@ public class Boss : MonoBehaviour
 
     private IEnumerator Wait() {
         yield return StartCoroutine(WaitCoroutine(true));
-        lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - 0.3f, transform.position.y, 0f), Quaternion.identity);
-        lastLaser.transform.parent = this.gameObject.transform;
-        yield return StartCoroutine(WaitCoroutine(false));
+        if(!SceneTransitions.transitioning) {
+            lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - 0.3f, transform.position.y, 0f), Quaternion.identity);
+            lastLaser.transform.parent = this.gameObject.transform;
+            yield return StartCoroutine(WaitCoroutine(false));
+        }
     }
 
     private IEnumerator WaitCoroutine(bool beforeLaser) {

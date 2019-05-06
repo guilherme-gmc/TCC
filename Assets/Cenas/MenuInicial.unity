@@ -526,7 +526,7 @@ AudioSource:
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -1276,7 +1276,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '-'
+  m_Text: "\"Voc\xEA provavelmente ter\xE1 de entrar em uma batalha mais de uma vez
+    para venc\xEA-la\" -Margaret Thatcher"
 --- !u!222 &1143873953
 CanvasRenderer:
   m_ObjectHideFlags: 0

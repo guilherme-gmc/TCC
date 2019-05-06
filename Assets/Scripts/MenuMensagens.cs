@@ -52,7 +52,7 @@ public class MenuMensagens : MonoBehaviour {
         if(IntroAnim.IsAppOpening()) {
             StartCoroutine(StartMessages());
         } else {
-            SwitchMessage();
+            SwitchMessage("previous");
         }
     }
 
@@ -89,6 +89,7 @@ public class MenuMensagens : MonoBehaviour {
         btnPrevText.color = new Color(1f - col.r, 1f - col.g, 1f - col.b, 1f);
         btnNextText.color = new Color(1f - col.r, 1f - col.g, 1f - col.b, 1f);
         msgText.text = msgs[_i];
+        print(msgs[_i]);
         yield return new WaitForSeconds(9.0f);
         SwitchMessage();
     }

@@ -12,7 +12,7 @@ public class Music : MonoBehaviour
 	private void Awake(){
 		if (instance != null){
 			Destroy(gameObject);
-		}else{
+		} else {
 			instance = this;
 			GameObject.DontDestroyOnLoad(gameObject);
 		}

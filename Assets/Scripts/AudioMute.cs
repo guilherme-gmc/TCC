@@ -9,6 +9,7 @@ public class AudioMute : MonoBehaviour {
 	}
 
 	public void ToggleSound(){
+		musicSource = GameObject.Find("Music").GetComponent<AudioSource>();
 		if(!Music.IsMuted) {
 			musicSource.mute = true;
 			Music.IsMuted = true;
