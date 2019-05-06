@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     }
 
     void Update() {
-        body.velocity = g.hspd * Time.deltaTime;
+        body.velocity = -g.hspd * Time.deltaTime;
     }
 
     void OnBecameInvisible()

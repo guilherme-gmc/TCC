@@ -23,10 +23,8 @@ public class IntroAnim : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public static bool IsAppOpening() {
+        return openingApp;
     }
 
     private IEnumerator EventSystemCoroutine() {
