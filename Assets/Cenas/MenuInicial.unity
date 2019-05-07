@@ -182,38 +182,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'CREDITOS MUITO FODAS AQUI
-
-    GERAL
-
-    GLR PIKA
-
-    BLA BLA BLA
-
-    LOREM IPSUM
-
-    ADJOSNDA DASBUJDAO
-
-    ASJDNBAOSIDHAS
-
-    ANEURISMA
-
-
-    ASDASDA
-
-    SDASDAS
-
-    SFAFJ
-
-    FJ
-
-    AJFADSOFJ23-JF
-
-    234FJ23OFJ23PJF23PFJ2
-
-    3FP J
-
-'
+  m_Text: "--- Arte ---\nDylan Cazzarotti\n\n--- GDD ---\nJorge Amoroso Tachibana\n\n---
+    Programa\xE7\xE3o ---\nGuilherme Medeiros de Carvalho\nPedro Mendes Adorno\n\n---
+    Web Designer --- \nGiovanna Sohn\nThiago "
 --- !u!222 &16377304
 CanvasRenderer:
   m_ObjectHideFlags: 0
