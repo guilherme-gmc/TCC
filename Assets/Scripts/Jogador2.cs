@@ -14,25 +14,12 @@ public class Jogador2 : MonoBehaviour
     private SceneTransitions sceneTrans;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
         bullet = Resources.Load<GameObject>("Prefabs/bullet");
 
-        if(Input.GetButton("Right")) {
-                dir.x += 1;
-            }
-            if(Input.GetButton("Up")) {
-                dir.y += 1;
-            }
-            if(Input.GetButton("Left")) {
-                dir.x -= 1;
-            }
-            if(Input.GetButton("Down")) {
-                dir.y -= 1;
-            }
     }
 
     // Update is called once per frame
@@ -43,30 +30,29 @@ public class Jogador2 : MonoBehaviour
             //return anim
             anim.speed = 1;
 
-            //Movement
             if(Input.GetButtonDown("Right")) {
                 dir.x += 1;
             }
             if(Input.GetButtonUp("Right")) {
-                dir.x -= 1;
+                dir.x = 0;
             }
             if(Input.GetButtonDown("Up")) {
                 dir.y += 1;
             }
             if(Input.GetButtonUp("Up")) {
-                dir.y -= 1;
+                dir.y = 0;
             }
             if(Input.GetButtonDown("Left")) {
                 dir.x -= 1;
             }
             if(Input.GetButtonUp("Left")) {
-                dir.x += 1;
+                dir.x = 0;
             }
             if(Input.GetButtonDown("Down")) {
                 dir.y -= 1;
             }
             if(Input.GetButtonUp("Down")) {
-                dir.y += 1;
+                dir.y = 0;
             }
 
             //Attack
@@ -76,7 +62,7 @@ public class Jogador2 : MonoBehaviour
                 }
             }
             
-            body.velocity = dir.normalized * spd * Time.deltaTime;
+            body.velocity = dir * spd * Time.deltaTime;
         } else
         {
             anim.speed = 0;

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public static float lifespan = 1.5f;
-    private float colliderLifespan = 1.2f;
+    public static float lifespan = 1.83f;
+    private float colliderLifespan = 0.66f;
+    private float colliderStart = 1f;
+    private BoxCollider2D coll;
     void Start()
     {
+        coll = GetComponent<BoxCollider2D>();
         StartCoroutine("Lifespan");
     }
 
@@ -18,9 +21,12 @@ public class Laser : MonoBehaviour
     }
 
     private IEnumerator Lifespan() {
+        coll.enabled = false;
+        yield return new WaitForSeconds(colliderStart);
+        coll.enabled = true;
         yield return new WaitForSeconds(colliderLifespan);
-        GetComponent<BoxCollider2D>().enabled = false;
-        yield return new WaitForSeconds(lifespan - colliderLifespan);
+        coll.enabled = false;
+        yield return new WaitForSeconds(lifespan - (colliderLifespan + colliderStart));
         Destroy(this.gameObject);
     }
 }
