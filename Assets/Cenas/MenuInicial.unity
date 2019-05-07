@@ -182,9 +182,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "--- Arte ---\nDylan Cazzarotti\n\n--- GDD ---\nJorge Amoroso Tachibana\n\n---
+  m_Text: "--- Arte ---\nDylan Cazzarotti Bento\n\n--- GDD ---\nJorge Amoroso Tachibana\n\n---
     Programa\xE7\xE3o ---\nGuilherme Medeiros de Carvalho\nPedro Mendes Adorno\n\n---
-    Web Designer --- \nGiovanna Sohn\nThiago "
+    Web Designer --- \nGiovanna Sohn da Rocha Gomes\n\n--- \xC1udio ---\nGuilherme
+    Ribeiro dos Santos"
 --- !u!222 &16377304
 CanvasRenderer:
   m_ObjectHideFlags: 0
