@@ -8,19 +8,26 @@ public class SceneTransitions : MonoBehaviour
     private GameObject gameBd;
     private Animator eyesAnim;
     private Animator bdAnim;
+    private GameObject tutorial1;
+    private Animator tutorialAnim;
     private float tranDuration;
     private float fadeDuration;
 
     public static bool transitioning;
+    public static bool playTutorial1 = true;
+    public static bool playTutorial2 = true;
     public static string _context;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameEyes = transform.Find("gameEyes").gameObject;
         gameBd = transform.Find("gameBackdrop").gameObject;
         eyesAnim = gameEyes.GetComponent<Animator>();
         bdAnim = gameBd.GetComponent<Animator>();
+        if(playTutorial1 && SceneManager.GetActiveScene().name == "Jogo1") {
+            tutorial1 = transform.Find("Tutorial1").gameObject;
+            tutorialAnim = tutorial1.GetComponent<Animator>();
+        }
 
         tranDuration = 2.95f;
         fadeDuration = 0.95f;
@@ -79,6 +86,12 @@ public class SceneTransitions : MonoBehaviour
             yield return new WaitForSeconds(fadeDuration);
             gameEyes.SetActive(false);
             gameBd.SetActive(false);
+            if(playTutorial1) {
+                playTutorial1 = false;
+                tutorial1.SetActive(true);
+                yield return new WaitForSeconds(22f);
+                tutorial1.SetActive(false);
+            }
             transitioning = false;
         } else if (_context == "gameOver")
         {

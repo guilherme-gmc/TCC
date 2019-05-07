@@ -55,13 +55,13 @@ public class GerarMapa : MonoBehaviour
     }
 
     void SpawnEnemy1() {
-        if(!PauseHandler.estaPausado) {
+        if(!PauseHandler.estaPausado && !SceneTransitions.transitioning) {
             Instantiate(enemy1, new Vector3(Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * 2, Random.Range(enemy1_minY, enemy1_maxY), 0f), Quaternion.identity);
         }
     }
 
     void SpawnChoco() {
-        if(!PauseHandler.estaPausado) {
+        if(!PauseHandler.estaPausado && !SceneTransitions.transitioning) {
             Instantiate(choco, new Vector3(Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * 2, Random.Range(choco_minY, choco_maxY), 0f), Quaternion.identity);
         }
     }

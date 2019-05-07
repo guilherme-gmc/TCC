@@ -12,9 +12,8 @@ public class enemy1 : MonoBehaviour
     }
     void Update()
     {
-        if(!SceneTransitions.transitioning && !PauseHandler.estaPausado)
-        {
-        body.velocity = new Vector2(Mathf.Lerp(g.iHspd.x, g.fHspd.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f) * Time.deltaTime;
+        if(!SceneTransitions.transitioning && !PauseHandler.estaPausado) {
+            body.velocity = new Vector2(Mathf.Lerp(g.iHspd.x, g.fHspd.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f) * Time.deltaTime;
         } else {
             body.velocity = Vector2.zero;
         }

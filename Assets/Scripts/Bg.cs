@@ -14,7 +14,7 @@ public class Bg : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if(!PauseHandler.estaPausado) {
+        if(!PauseHandler.estaPausado && !SceneTransitions.transitioning) {
             spd = new Vector2(Mathf.Lerp(g.iBgspd.x, g.fBgspd.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f);
             render.material.mainTextureOffset += spd * Time.deltaTime * Time.deltaTime / transform.localScale.x;
         }

@@ -20,15 +20,15 @@ public class MenuIniciar : MonoBehaviour {
 	}
 
 	public void SairJogo(){
-		if(credits.activeSelf) {
-			anim.SetTrigger("creditsEnd");
-		} else {
-			Application.Quit ();
-		}
+		Application.Quit ();
 	}
 
 	public void CarregarCreditos() {
 		anim.SetTrigger("creditsStart");
+	}
+
+	public void VoltarCreditos() {
+		anim.SetTrigger("creditsEnd");
 	}
 
 }
