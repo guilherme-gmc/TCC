@@ -5,16 +5,21 @@ using UnityEngine;
 public class Bg : MonoBehaviour
 {
     private Renderer render;
-    // Start is called before the first frame update
+    private Vector2 spd;
     void Start()
     {
         render = GetComponent<Renderer>();
+        spd = new Vector2(Mathf.Lerp(g.iBgspd.x, g.fBgspd.x, (g.maxScore+1)/(g.GetScore()+1)), 0f);
     }
 
     // Update is called once per frame
     void Update() {
         if(!PauseHandler.estaPausado) {
-            render.material.mainTextureOffset += g.bgSpd * Time.deltaTime * Time.deltaTime / transform.localScale.x;
+            spd = new Vector2(Mathf.Lerp(g.iBgspd.x, g.fBgspd.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f);
+            render.material.mainTextureOffset += spd * Time.deltaTime * Time.deltaTime / transform.localScale.x;
         }
     }
+
+
+
 }

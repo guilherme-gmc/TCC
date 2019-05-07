@@ -11,12 +11,11 @@ public class choco : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(!SceneTransitions.transitioning && !PauseHandler.estaPausado)
         {
-        body.velocity = g.hspd * Time.deltaTime;
+        body.velocity = new Vector2(Mathf.Lerp(g.iHspd.x, g.fHspd.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f) * Time.deltaTime;
         } else
         {
             body.velocity = Vector2.zero;

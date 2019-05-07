@@ -11,7 +11,7 @@ public class MenuIniciar : MonoBehaviour {
 
 	void Start () {
         sceneTransitions = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
-		anim = transform.Find("IntroAnim").GetComponent<Animator>();
+		anim = GameObject.Find("Canvas").transform.Find("IntroAnim").GetComponent<Animator>();
 		credits = transform.Find("IntroAnim").Find("CreditosText").gameObject;
     }
 	

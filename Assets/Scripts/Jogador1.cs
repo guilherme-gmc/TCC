@@ -41,6 +41,7 @@ public class Jogador1 : MonoBehaviour {
         if (!SceneTransitions.transitioning && !PauseHandler.estaPausado) {
             anim.speed = 1;
             mousePressed = Input.GetMouseButton(0) ? true : false;
+
             //Apply gravity
             if (!grounded && vspd.y > minVspd.y) {
                 vspd += grav;

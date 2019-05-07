@@ -74,6 +74,16 @@ public class Jogador2 : MonoBehaviour
     {
         if(collision.gameObject.tag == "Laser") {
             sceneTrans.ChangeScene("gameOver");
+        } else if(collision.gameObject.tag == "Boss") {
+            sceneTrans.ChangeScene("gameOver");
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision) {
+        if(collision.gameObject.tag == "Laser") {
+            sceneTrans.ChangeScene("gameOver");
+        } else if(collision.gameObject.tag == "Boss") {
+            sceneTrans.ChangeScene("gameOver");
         }
     }
 

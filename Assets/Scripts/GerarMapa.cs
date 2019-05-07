@@ -35,7 +35,7 @@ public class GerarMapa : MonoBehaviour
 
         //Enemy1
 		enemy1 = Resources.Load<GameObject>("Prefabs/Enemy1");
-        enemy1_spawnPadding = 0f;
+        enemy1_spawnPadding = 0.2f;
 		enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + enemy1_spawnPadding;
         enemy1_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy1.transform.localScale.y / 2 - enemy1_spawnPadding;
         enemy1_spawnDelay = 0.5f;
