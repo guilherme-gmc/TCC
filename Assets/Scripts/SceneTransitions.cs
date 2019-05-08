@@ -94,12 +94,15 @@ public class SceneTransitions : MonoBehaviour
                 playTutorial1 = false;
                 tutorial1.SetActive(true);
                 yield return new WaitForSeconds(22f);
+                transitioning = false;
+                yield return new WaitForSeconds(3.5f);
                 tutorial1.SetActive(false);
             }
             transitioning = false;
         } else if (_context == "gameOver")
         {
             bdAnim.SetTrigger("gameOverOut");
+            music.SetMusic("menu");
             yield return new WaitForSeconds(fadeDuration);
             gameEyes.SetActive(false);
             gameBd.SetActive(false);
@@ -110,13 +113,13 @@ public class SceneTransitions : MonoBehaviour
             music.SetMusic("boss");
             yield return new WaitForSeconds(fadeDuration);
             gameBd.SetActive(false);
+            transitioning = false;
             if(playTutorial2) {
                 playTutorial2 = false;
                 tutorial2.SetActive(true);
                 yield return new WaitForSeconds(4f);
                 tutorial2.SetActive(false);
             }
-            transitioning = false;
         } else if (_context == "gameCont")
         {
             bdAnim.SetTrigger("gameStartOut");
