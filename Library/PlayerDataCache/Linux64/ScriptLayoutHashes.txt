@@ -172,7 +172,7 @@ ab4cad2c1f53fa8993665e2de44e492a Assembly-CSharp.dll:.Shake
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.handlerUI
 a4f0a4f62100f1a4fb5cbe0e00dde83f Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 5fc094978ce3e3591a7500ed380d854a Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Music
+76b4e51512114ab1d94bd839109d1e87 Assembly-CSharp.dll:.Music
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MenuMensagens
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.Bullet
