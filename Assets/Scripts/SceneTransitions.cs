@@ -9,7 +9,7 @@ public class SceneTransitions : MonoBehaviour
     private Animator eyesAnim;
     private Animator bdAnim;
     private GameObject tutorial1;
-    private Animator tutorialAnim;
+    private GameObject tutorial2;
     private float tranDuration;
     private float fadeDuration;
 
@@ -17,6 +17,7 @@ public class SceneTransitions : MonoBehaviour
     public static bool playTutorial1 = true;
     public static bool playTutorial2 = true;
     public static string _context;
+    private Music music;
 
     void Start()
     {
@@ -24,15 +25,17 @@ public class SceneTransitions : MonoBehaviour
         gameBd = transform.Find("gameBackdrop").gameObject;
         eyesAnim = gameEyes.GetComponent<Animator>();
         bdAnim = gameBd.GetComponent<Animator>();
+        music = GameObject.Find("Music").GetComponent<Music>();
+
         if(playTutorial1 && SceneManager.GetActiveScene().name == "Jogo1") {
             tutorial1 = transform.Find("Tutorial1").gameObject;
-            tutorialAnim = tutorial1.GetComponent<Animator>();
+        } else if(playTutorial2 && SceneManager.GetActiveScene().name == "Jogo2") {
+            tutorial2 = transform.Find("Tutorial2").gameObject;
         }
 
         tranDuration = 2.95f;
         fadeDuration = 0.95f;
-        if(transitioning)
-        {
+        if(transitioning) {
             StartCoroutine(TransitionFade());
         }
     }
@@ -54,6 +57,7 @@ public class SceneTransitions : MonoBehaviour
             bdAnim.SetTrigger("gameOver");
             transitioning = true;
             yield return new WaitForSeconds(tranDuration);
+
             SceneManager.LoadScene("MenuInicial");
         } else if(context == "gameStart")
         {
@@ -103,12 +107,20 @@ public class SceneTransitions : MonoBehaviour
         } else if (_context == "gameNext")
         {
             bdAnim.SetTrigger("gameStartOut");
+            music.SetMusic("boss");
             yield return new WaitForSeconds(fadeDuration);
             gameBd.SetActive(false);
+            if(playTutorial2) {
+                playTutorial2 = false;
+                tutorial2.SetActive(true);
+                yield return new WaitForSeconds(4f);
+                tutorial2.SetActive(false);
+            }
             transitioning = false;
         } else if (_context == "gameCont")
         {
             bdAnim.SetTrigger("gameStartOut");
+            music.SetMusic("menu");
             yield return new WaitForSeconds(fadeDuration);
             gameBd.SetActive(false);
             transitioning = false;
