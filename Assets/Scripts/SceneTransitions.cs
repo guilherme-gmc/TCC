@@ -47,7 +47,7 @@ public class SceneTransitions : MonoBehaviour
         StartCoroutine(ChangeSceneCoroutine(context));
     }
 
-    private IEnumerator ChangeSceneCoroutine(string context)
+    private IEnumerator ChangeSceneCoroutine(string context, bool resetHp = false)
     {
         _context = context;
         gameEyes.SetActive(true);
@@ -77,6 +77,7 @@ public class SceneTransitions : MonoBehaviour
             bdAnim.SetTrigger("gameStart");
             transitioning = true;
             yield return new WaitForSeconds(fadeDuration);
+            g.hp = g.maxHp;
             SceneManager.LoadScene("Jogo1");
         }
     }

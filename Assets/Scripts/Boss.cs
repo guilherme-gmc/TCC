@@ -8,7 +8,7 @@ public class Boss : MonoBehaviour
     protected float currentHp;
     protected float hp1;
     protected float hp2;
-    private static int phase = 1;
+    public static int phase = 1;
     private Coroutine attack1;
     private Coroutine attack2;
     protected float startingCooldown;

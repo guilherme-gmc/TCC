@@ -19,6 +19,7 @@ public class IntroAnim : MonoBehaviour
         msg = GameObject.Find("Message").GetComponent<MenuMensagens>();
         audio = GameObject.Find("Canvas").GetComponent<AudioMute>();
         Boss.lost = false;
+        Boss.phase = 1;
         g.maxHp = 3;
         g.hp = 3;
 
