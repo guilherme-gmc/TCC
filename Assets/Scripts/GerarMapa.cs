@@ -35,7 +35,7 @@ public class GerarMapa : MonoBehaviour
 
         if(SceneTransitions._context == "gameCont" && Boss.lost) {
             consumable = Resources.Load<GameObject>("Prefabs/flower");
-            enemy = Resources.Load<GameObject>("Prefabs/Enemy1");
+            enemy = Resources.Load<GameObject>("Prefabs/Enemy2");
         } else {
             consumable = Resources.Load<GameObject>("Prefabs/choco");
 		    enemy = Resources.Load<GameObject>("Prefabs/Enemy1");

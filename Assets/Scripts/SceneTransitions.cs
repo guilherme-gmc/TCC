@@ -16,6 +16,7 @@ public class SceneTransitions : MonoBehaviour
     public static bool transitioning;
     public static bool playTutorial1 = true;
     public static bool playTutorial2 = true;
+    public static bool playCutscene1 = true;
     public static string _context;
     private Music music;
 
@@ -27,7 +28,7 @@ public class SceneTransitions : MonoBehaviour
         bdAnim = gameBd.GetComponent<Animator>();
         music = GameObject.Find("Music").GetComponent<Music>();
 
-        if(playTutorial1 && SceneManager.GetActiveScene().name == "Jogo1") {
+        if((playTutorial1 || playCutscene1) && SceneManager.GetActiveScene().name == "Jogo1") {
             tutorial1 = transform.Find("Tutorial1").gameObject;
         } else if(playTutorial2 && SceneManager.GetActiveScene().name == "Jogo2") {
             tutorial2 = transform.Find("Tutorial2").gameObject;
@@ -93,6 +94,7 @@ public class SceneTransitions : MonoBehaviour
             if(playTutorial1) {
                 playTutorial1 = false;
                 tutorial1.SetActive(true);
+                tutorial1.GetComponent<Animator>().SetTrigger("tutorial");
                 yield return new WaitForSeconds(22f);
                 transitioning = false;
                 yield return new WaitForSeconds(3.5f);
@@ -126,6 +128,14 @@ public class SceneTransitions : MonoBehaviour
             music.SetMusic("menu");
             yield return new WaitForSeconds(fadeDuration);
             gameBd.SetActive(false);
+            if(playCutscene1) {
+                playCutscene1 = false;
+                tutorial1.SetActive(true);
+                tutorial1.GetComponent<Animator>().SetTrigger("cutscene");
+                yield return new WaitForSeconds(18.5f);
+                transitioning = false;
+                tutorial1.SetActive(false);
+            }
             transitioning = false;
         }
 
