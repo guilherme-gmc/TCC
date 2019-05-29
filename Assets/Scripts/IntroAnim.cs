@@ -10,6 +10,7 @@ public class IntroAnim : MonoBehaviour
     private Animator anim;
     private MenuMensagens msg;
     private AudioMute audio;
+
     void Start()
     {
         introAnim = transform.Find("IntroAnim").gameObject;
@@ -17,6 +18,9 @@ public class IntroAnim : MonoBehaviour
         anim = introAnim.GetComponent<Animator>();
         msg = GameObject.Find("Message").GetComponent<MenuMensagens>();
         audio = GameObject.Find("Canvas").GetComponent<AudioMute>();
+        Boss.lost = false;
+        g.maxHp = 3;
+        g.hp = 3;
 
         if(openingApp) {
             anim.SetTrigger("introAnim");

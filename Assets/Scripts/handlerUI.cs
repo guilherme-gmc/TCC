@@ -14,7 +14,11 @@ public class handlerUI : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-        hudsPath = "UI/";
+        if(SceneTransitions._context == "gameCont" && Boss.lost) {
+        hudsPath = "UI/HUD2";
+        } else {
+        hudsPath = "UI/HUD1";
+        }
         Score = transform.Find("Score").gameObject;
         hudImg = Score.GetComponent<Image>();
         i = 0;

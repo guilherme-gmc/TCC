@@ -35,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -67,7 +67,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -78,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -91,9 +91,9 @@ TextureImporter:
       name: VidaToda_0
       rect:
         serializedVersion: 2
-        x: 65
-        y: 145
-        width: 60
+        x: 0
+        y: 0
+        width: 20
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -102,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1e010b0964449d4ea26dadd4a869262
+      spriteID: 3fdf67615994ebc84a99a842eab9fe81
       vertices: []
       indices: 
       edges: []
@@ -111,9 +111,9 @@ TextureImporter:
       name: VidaToda_1
       rect:
         serializedVersion: 2
-        x: 65
-        y: 113
-        width: 60
+        x: 21
+        y: 0
+        width: 20
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -122,47 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e03d8bc52c39cb44aed9dc64a106e91
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VidaToda_2
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 86
-        width: 60
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87c5f2022d3b0f8488dc5dab57a57a0b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VidaToda_3
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 58
-        width: 60
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 67e702a8eb472ce46a1543d05c9528f7
+      spriteID: 52467d9bb606b57cd908a67b5ff4c33d
       vertices: []
       indices: 
       edges: []

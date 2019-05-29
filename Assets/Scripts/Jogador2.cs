@@ -10,6 +10,7 @@ public class Jogador2 : MonoBehaviour
     private Vector2 dir = Vector2.zero;
     private bool attacking;
     private GameObject bullet;
+    private Health health;
 
     private SceneTransitions sceneTrans;
 
@@ -18,6 +19,7 @@ public class Jogador2 : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
+        health = GameObject.Find("Health").GetComponent<Health>();
         bullet = Resources.Load<GameObject>("Prefabs/bullet");
 
     }
@@ -73,16 +75,23 @@ public class Jogador2 : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Laser") {
-            sceneTrans.ChangeScene("gameOver");
-        } else if(collision.gameObject.tag == "Boss") {
-            sceneTrans.ChangeScene("gameOver");
+            g.hp--;
+            health.UpdateHealth();
+            if(g.hp <= 0) {
+                sceneTrans.ChangeScene("gameCont");
+            }
+        } else if(collision.gameObject.tag == "BossBullet") {
+            Destroy(collision.gameObject);
+            g.hp--;
+            health.UpdateHealth();
+            if(g.hp <= 0) {
+                sceneTrans.ChangeScene("gameCont");
+            }
         }
     }
 
-    void OnTriggerStay2D(Collider2D collision) {
-        if(collision.gameObject.tag == "Laser") {
-            sceneTrans.ChangeScene("gameCont");
-        } else if(collision.gameObject.tag == "Boss") {
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "Boss") {
             sceneTrans.ChangeScene("gameCont");
         }
     }

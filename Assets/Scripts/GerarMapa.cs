@@ -10,22 +10,22 @@ public class GerarMapa : MonoBehaviour
     public GameObject player;
 
     private float groundY;
-    private GameObject enemy1;
-    private GameObject choco;
+    private GameObject enemy;
+    private GameObject consumable;
 
-    //Enemy1 values
-    private float enemy1_minY;
-    private float enemy1_maxY;
-    private float enemy1_spawnPadding;
-    private float enemy1_spawnDelay;
-    private float enemy1_spawnRepeat;
+    //enemy values
+    private float enemy_minY;
+    private float enemy_maxY;
+    private float enemy_spawnPadding;
+    private float enemy_spawnDelay;
+    private float enemy_spawnRepeat;
 
-    //Choco values
-    private float choco_minY;
-    private float choco_maxY;
-    private float choco_spawnPadding;
-    private float choco_spawnDelay;
-    private float choco_spawnRepeat;
+    //consumable values
+    private float consumable_minY;
+    private float consumable_maxY;
+    private float consumable_spawnPadding;
+    private float consumable_spawnDelay;
+    private float consumable_spawnRepeat;
     
     // Use this for initialization
     void Start()
@@ -33,36 +33,41 @@ public class GerarMapa : MonoBehaviour
 		//Ambient
         groundY = Chao.transform.position.y;      
 
-        //Enemy1
-		enemy1 = Resources.Load<GameObject>("Prefabs/Enemy1");
-        enemy1_spawnPadding = 0.2f;
-		enemy1_minY = groundY + Chao.transform.localScale.y / 2 + enemy1.transform.localScale.y / 2 + enemy1_spawnPadding;
-        enemy1_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy1.transform.localScale.y / 2 - enemy1_spawnPadding;
-        enemy1_spawnDelay = 0.5f;
-        enemy1_spawnRepeat = 1f;
+        if(SceneTransitions._context == "gameCont" && Boss.lost) {
+            consumable = Resources.Load<GameObject>("Prefabs/flower");
+            enemy = Resources.Load<GameObject>("Prefabs/Enemy1");
+        } else {
+            consumable = Resources.Load<GameObject>("Prefabs/choco");
+		    enemy = Resources.Load<GameObject>("Prefabs/Enemy1");
+        }
+        //enemy
+        enemy_spawnPadding = 0.2f;
+		enemy_minY = groundY + Chao.transform.localScale.y / 2 + enemy.transform.localScale.y / 2 + enemy_spawnPadding;
+        enemy_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - enemy.transform.localScale.y / 2 - enemy_spawnPadding;
+        enemy_spawnDelay = 0.5f;
+        enemy_spawnRepeat = 1f;
 
-        //Choco
-        choco = Resources.Load<GameObject>("Prefabs/choco");
-        choco_spawnPadding = 0f;
-        choco_minY = groundY + Chao.transform.localScale.y / 2 + choco.transform.localScale.y / 2 + choco_spawnPadding;
-        choco_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - choco.transform.localScale.y / 2 - choco_spawnPadding;
-        choco_spawnDelay = 2f;
-        choco_spawnRepeat = enemy1_spawnRepeat*3;
+        //Consumable
+        consumable_spawnPadding = 0f;
+        consumable_minY = groundY + Chao.transform.localScale.y / 2 + consumable.transform.localScale.y / 2 + consumable_spawnPadding;
+        consumable_maxY = Teto.transform.position.y - Teto.transform.localScale.y / 2 - consumable.transform.localScale.y / 2 - consumable_spawnPadding;
+        consumable_spawnDelay = 2f;
+        consumable_spawnRepeat = enemy_spawnRepeat*3;
 
 
-        InvokeRepeating("SpawnEnemy1", enemy1_spawnDelay, enemy1_spawnRepeat);
-        InvokeRepeating("SpawnChoco", choco_spawnDelay, choco_spawnRepeat);
+        InvokeRepeating("SpawnEnemy", enemy_spawnDelay, enemy_spawnRepeat);
+        InvokeRepeating("SpawnConsumable", consumable_spawnDelay, consumable_spawnRepeat);
     }
 
-    void SpawnEnemy1() {
+    void SpawnEnemy() {
         if(!PauseHandler.estaPausado && !SceneTransitions.transitioning) {
-            Instantiate(enemy1, new Vector3(Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * 2, Random.Range(enemy1_minY, enemy1_maxY), 0f), Quaternion.identity);
+            Instantiate(enemy, new Vector3(Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * 2, Random.Range(enemy_minY, enemy_maxY), 0f), Quaternion.identity);
         }
     }
 
-    void SpawnChoco() {
+    void SpawnConsumable() {
         if(!PauseHandler.estaPausado && !SceneTransitions.transitioning) {
-            Instantiate(choco, new Vector3(Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * 2, Random.Range(choco_minY, choco_maxY), 0f), Quaternion.identity);
+            Instantiate(consumable, new Vector3(Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * 2, Random.Range(consumable_minY, consumable_maxY), 0f), Quaternion.identity);
         }
     }
 

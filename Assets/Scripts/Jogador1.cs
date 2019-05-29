@@ -4,6 +4,7 @@ using UnityEngine;
 public class Jogador1 : MonoBehaviour {
     private Rigidbody2D body;
     private Animator anim;
+    private Health health;
     private bool grounded;
     private bool roofed;
     private Vector2 grav;
@@ -23,6 +24,7 @@ public class Jogador1 : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
+        health = GameObject.Find("Health").GetComponent<Health>();
         grav = new Vector2(0f, -22f) * g.spdMult;
         jmpAccel = new Vector2(0f, 44f) * g.spdMult;
         jmpSpd = new Vector2(0f, 100f) * g.spdMult;
@@ -99,7 +101,11 @@ public class Jogador1 : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
 		if(collision.gameObject.tag == "Enemy1") {
-            sceneTrans.ChangeScene("gameOver");
+            g.hp--;
+            health.UpdateHealth();
+            if(g.hp <= 0) {
+                sceneTrans.ChangeScene("gameOver");
+            }
         } else if(collision.gameObject.tag == "Consumable") {
             g.ScoreInc();
             Destroy(collision.gameObject);

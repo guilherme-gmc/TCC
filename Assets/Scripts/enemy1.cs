@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemy1 : MonoBehaviour
 {
     private Rigidbody2D body;
-    // Start is called before the first frame update
+    private Vector2 spd;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -13,7 +13,12 @@ public class enemy1 : MonoBehaviour
     void Update()
     {
         if(!SceneTransitions.transitioning && !PauseHandler.estaPausado) {
-            body.velocity = new Vector2(Mathf.Lerp(g.iHspd.x, g.fHspd.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f) * Time.deltaTime;
+            if(SceneTransitions._context == "gameCont" && Boss.lost) {
+                spd = new Vector2(Mathf.Lerp(g.iHspd.x, g.fHspd2.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f);
+            } else {
+                spd = new Vector2(Mathf.Lerp(g.iHspd.x, g.fHspd.x, ((float)g.GetScore()+1f)/(float)g.maxScore), 0f);
+            }
+            body.velocity = spd * Time.deltaTime;
         } else {
             body.velocity = Vector2.zero;
         }

@@ -10,45 +10,46 @@ public class Boss : MonoBehaviour
     protected float hp2;
     private static int phase = 1;
     private Coroutine attack1;
+    private Coroutine attack2;
     protected float startingCooldown;
     protected float endingCooldown;
+    private float bulletRepeat;
     private GameObject laser;
     private GameObject lastLaser;
     private int lastLaserPos = 0;
     private int laserPos = 0;
+    private GameObject bossBullet;
     private Shake shake;
     private bool switching;
     private float phase2WlkSpd;
     Vector2 vspd;
     private Vector3 scaleDec;
     private bool attacking2;
-    private bool doneAttacking2;
-    float attackY;
-    bool arrived;
-    bool standing;
     private SceneTransitions sceneTrans;
     private Animator anim;
     private CapsuleCollider2D coll;
+    private Health health;
+    public static bool lost = false;
 
     void Start()
     {
         laser = Resources.Load<GameObject>("Prefabs/laser");
+        bossBullet = Resources.Load<GameObject>("Prefabs/BossBullet");
         sceneTrans = GameObject.Find("Canvas").GetComponent<SceneTransitions>();
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         coll = GetComponent<CapsuleCollider2D>();
         shake = GetComponent<Shake>();
+        health = GameObject.Find("Health").GetComponent<Health>();
         hp1 = 100f;
         hp2 = 200f;
         currentHp = hp1;
         startingCooldown = 3f;
         endingCooldown = 1.8f;
+        bulletRepeat = 0.35f;
         scaleDec = new Vector3((transform.localScale.x - 1.45f)/3f, (transform.localScale.y - 1.55f)/3f, 0f);
         phase2WlkSpd = 140f;
-        vspd = Vector2.zero;
-        doneAttacking2 = true;
-        arrived = false;
-        standing = false;
+        vspd = new Vector2(0f, phase2WlkSpd);
 
         if(phase == 1) {
             StartAttack1();
@@ -60,7 +61,9 @@ public class Boss : MonoBehaviour
             coll.size = new Vector2(1.1f, 1.55f);
             anim.SetTrigger("phaseTwo");
             currentHp = hp2;
-            attacking2 = true;
+            //attacking2 = true;
+            body.velocity = vspd * Time.deltaTime;
+            StartAttack2();
         }
     }
 
@@ -78,47 +81,9 @@ public class Boss : MonoBehaviour
                     switching = false;
                 }
             }
-
-            if(attacking2) {
-                if(doneAttacking2) {
-                    doneAttacking2 = false;
-                    standing = false;
-                    attackY = GenerateAttackPos();
-                    arrived = false;
-                }
-                
-                if(!arrived) {
-                    if(attackY > transform.position.y) {
-                        vspd = new Vector2(0f, phase2WlkSpd);
-                        if(transform.position.y + vspd.y * Mathf.Pow(Time.deltaTime, 2) > attackY) {
-                            transform.position = new Vector3(transform.position.x, attackY, transform.position.z);
-                            body.velocity = Vector2.zero;
-                            arrived = true;
-                        } else {
-                            body.velocity = vspd * Time.deltaTime;
-                            
-                        }
-                    } else if(attackY < transform.position.y) {
-                        vspd = new Vector2(0f, -phase2WlkSpd);
-                        if(transform.position.y + vspd.y * Mathf.Pow(Time.deltaTime, 2) < attackY) {
-                            transform.position = new Vector3(transform.position.x, attackY, transform.position.z);
-                            body.velocity = Vector2.zero;
-                            arrived = true;
-                        } else {
-                            body.velocity = vspd * Time.deltaTime;
-                        }
-                    } else {
-                        vspd = Vector2.zero;
-                        arrived = true;
-                    }
-                } else {
-                    if(!standing) {
-                        StartCoroutine(Wait());
-                        standing = true;
-                    } 
-                }
-            }
         }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -153,13 +118,15 @@ public class Boss : MonoBehaviour
     }
 
     private IEnumerator DieCoroutine() {
-        attacking2 = false;
+        StopCoroutine(attack2);
+        //attacking2 = false;
         body.velocity = Vector2.zero;
         yield return shake.ShakeMe(4f, 3f, true);
         Destroy(this.gameObject);
         sceneTrans.ChangeScene("gameOver");
     }
 
+    //phase 1 laser attack
     private void StartAttack1() {
         attack1 = StartCoroutine("Attack1");
     }
@@ -173,7 +140,25 @@ public class Boss : MonoBehaviour
         }
     }
 
-    private IEnumerator Wait() {
+    //current phase 2 bullet attack
+    private void StartAttack2() {
+        attack2 = StartCoroutine("Attack2");
+    }
+
+    private IEnumerator Attack2() {
+        yield return new WaitForSeconds((currentHp / 100) * (startingCooldown - endingCooldown) + endingCooldown);
+        int shots = Random.Range(3, 7); //3 a 6 tiros (min inclusivo, max exclusivo)
+        for(int i = 0; i < shots; i++) {
+            if(!PauseHandler.estaPausado && !SceneTransitions.transitioning) {
+                Instantiate(bossBullet, new Vector3(transform.position.x - transform.localScale.x, transform.position.y, 0f), Quaternion.identity);
+            }
+            yield return new WaitForSeconds(bulletRepeat);
+        }
+        StartAttack2();
+    }
+
+    //Abandoned phase 2 laser attack
+    /*private IEnumerator Wait() {
         yield return StartCoroutine(WaitCoroutine(true));
         if(!SceneTransitions.transitioning) {
             lastLaser = Instantiate(laser, new Vector3(transform.position.x - transform.localScale.x / 2 - 0.3f, transform.position.y, 0f), Quaternion.identity);
@@ -187,9 +172,8 @@ public class Boss : MonoBehaviour
             yield return new WaitForSeconds(Laser.lifespan);
         } else {
             yield return new WaitForSeconds(Laser.lifespan * 2);
-            doneAttacking2 = true;
         }
-    }
+    }*/
 
     private float GenerateAttackPos() {
         do {
@@ -208,12 +192,22 @@ public class Boss : MonoBehaviour
 
     private IEnumerator SwitchCoroutine() {
         switching = true;
+        lost = true;
         if(lastLaser != null) {
             Destroy(lastLaser);
         }
         phase = 2;
+        g.maxHp++;
+        g.hp++;
+        health.UpdateHealth();
         yield return shake.ShakeMe(2f, 3f);
         sceneTrans.ChangeScene("gameCont");
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Roof") {
+            body.velocity = -body.velocity;
+        }
     }
 
 
